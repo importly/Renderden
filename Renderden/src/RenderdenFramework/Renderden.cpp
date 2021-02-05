@@ -37,7 +37,14 @@ int Renderden::init() {
     {
            0, 0.5, 0.0, // top corner
         -0.5,-0.5, 0.0, // bottom left corner
-         0.5,-0.5, 0.0  // bottom right corner
+         0.5,-0.5, 0.0,  // bottom right corner
+          0,2,0.2, 0.0,
+         -0.2,0.2, 0.0,
+    };
+
+    float indices[] =
+    {
+        1,2,3
     };
 
     /* Loop until the user closes the window */
