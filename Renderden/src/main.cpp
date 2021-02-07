@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include "Shader.h"
+#include <windows.h>
 
 // We just declare function outlines here so that we don't have a mess up here. The function definitons are at the bottom of the script.
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
@@ -19,10 +20,10 @@ void processInput(GLFWwindow* window);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-int main()
+int main(int argc, char * argv[])
 {
-    char buff[FILENAME_MAX];
-    std::string mainpath = (std::string)_getcwd(buff, FILENAME_MAX);
+    std::string mainpath = argv[0];
+    mainpath.erase(mainpath.end() - ((mainpath.length() - mainpath.find_last_of('\\'))-1),mainpath.end());
     std::cout << mainpath;
     // glfw: initialize and configure
     // ------------------------------
