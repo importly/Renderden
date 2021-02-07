@@ -22,9 +22,9 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main(int argc, char * argv[])
 {
-    std::string mainpath = argv[0];
-    mainpath.erase(mainpath.end() - ((mainpath.length() - mainpath.find_last_of('\\'))-1),mainpath.end());
-    std::cout << mainpath;
+    if (argc > 1) {
+        _chdir(argv[1]);
+    }
     // glfw: initialize and configure
     // ------------------------------
     glfwInit(); //The main thing that start everything.
@@ -54,7 +54,7 @@ int main(int argc, char * argv[])
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader ourShader((mainpath + "/src/shaders/shader.vs").c_str(), (mainpath + "/src/shaders/shader.fs").c_str());
+    Shader ourShader("src/shaders/shader.vs", "src/shaders/shader.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -108,7 +108,7 @@ int main(int argc, char * argv[])
     int width, height, nrChannels;
     // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load((mainpath + "/src/textures/container.jpg").c_str(), &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load("src/textures/container.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
