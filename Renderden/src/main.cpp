@@ -22,8 +22,7 @@ const unsigned int SCR_HEIGHT = 600;
 int main()
 {
     char buff[FILENAME_MAX];
-    const char* mainpathc = _getcwd(buff, FILENAME_MAX);
-    std::string mainpath = mainpathc;
+    std::string mainpath = (std::string)_getcwd(buff, FILENAME_MAX);
     std::cout << mainpath;
     // glfw: initialize and configure
     // ------------------------------
