@@ -1,0 +1,35 @@
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe build active file",
+            "command": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-o",
+                "${workspaceRoot}/Renderden/x64/Debug/vscBuilds/application",
+                "-I${workspaceRoot}/include/",
+                "-g",
+                "${workspaceRoot}/Renderden/src/main.cpp",
+                "${workspaceRoot}/Renderden/src/glad.c",
+                "-lopengl32",
+                "-L${workspaceRoot}/lib/ming/",
+                "-luser32",
+                "-lgdi32",
+                "-lkernel32",
+                "-static",
+                "-lglfw3dll",
+            ],
+            "options": {
+                "cwd": "C:\\Program Files\\mingw-w64\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\mingw64\\bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        }
+    ],
+    "version": "2.0.0"
+}

@@ -1,12 +1,17 @@
 //For our image library
 #define STB_IMAGE_IMPLEMENTATION
 
+//includes
+#include <stdio.h>
+#include <direct.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <img/stb_image.h>
 #include <iostream>
+#include <string>
 #include "Shader.h"
 
+// We just declare function outlines here so that we don't have a mess up here. The function definitons are at the bottom of the script.
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
@@ -16,9 +21,13 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main()
 {
+    char buff[FILENAME_MAX];
+    const char* mainpathc = _getcwd(buff, FILENAME_MAX);
+    std::string mainpath = mainpathc;
+    std::cout << mainpath;
     // glfw: initialize and configure
     // ------------------------------
-    glfwInit();
+    glfwInit(); //The main thing that start everything.
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -45,7 +54,7 @@ int main()
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader ourShader("src/shader.vs", "src/shader.fs");
+    Shader ourShader((mainpath + "/src/shaders/shader.vs").c_str(), (mainpath + "/src/shaders/shader.fs").c_str());
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
@@ -99,7 +108,7 @@ int main()
     int width, height, nrChannels;
     // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
     stbi_set_flip_vertically_on_load(true);
-    unsigned char* data = stbi_load("src/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char* data = stbi_load((mainpath + "/src/textures/container.jpg").c_str(), &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
